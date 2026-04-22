@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout admin">
+            
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: admin-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+     Dashboard
+    </div>
+    <div class="account-bdy p-3">
+    <div class="row mb-3">
+          <div class="col-xl-4 col-sm-6 py-2">
+              <div class="card dashboard-card text-white h-100 shadow">
+                  <div class="card-body primary-bg">
+                      <div class="rotate">
+                          <i class="fas fa-users fa-4x"></i>
+                      </div>
+                      <h6 class="text-uppercase">Users</h6>
+                      <h1 th:text="${users}"></h1>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-4 col-sm-6 py-2">
+              <div class="card dashboard-card text-white  h-100 shadow">
+                  <div class="card-body bg-secondary">
+                      <div class="rotate">
+                          <i class="fas fa-building fa-4x"></i>
+                      </div>
+                      <h6 class="text-uppercase">Employers</h6>
+                      <h1  th:text="${employers}"></h1>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-4 col-sm-6 py-2">
+              <div class="card dashboard-card text-white h-100 shadow">
+                  <div class="card-body bg-info">
+                      <div class="rotate">
+                          <i class="fas fa-user-tie fa-4x"></i>
+                      </div>
+                      <h6 class="text-uppercase">Job Seekers</h6>
+                      <h1  th:text="${jobseekers}"></h1>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-6 col-sm-6 py-2">
+            <div class="card dashboard-card text-white h-100 shadow">
+                <div class="card-body bg-danger">
+                    <div class="rotate">
+                        <i class="fas fa-star-of-life fa-4x"></i>
+                    </div>
+                    <h6 class="text-uppercase">Total Jobs</h6>
+                    <h1  th:text="${jobs}"></h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-6 py-2">
+            <div class="card dashboard-card text-white h-100 shadow">
+                <div class="card-body bg-warning">
+                    <div class="rotate">
+                        <i class="fas fa-industry fa-4x"></i>
+                    </div>
+                    <h6 class="text-uppercase">Live Posts</h6>
+                    <h1  th:text="${liveposts}"></h1>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+         </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+    <th:block th:replace="base :: header">
+</th:block>
+  
+    <div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 px-0">
+            <div class="login-container">
+                <div class="login-header mb-3">
+                    <h3> <img src="/assets/images/logo/joblister.png" width="50px;" alt=""> Job Portal Login</h3>
+                    <p class="login-header-title">Welcome back to Job portal</p>
+                    <p class="text-muted">login with your registered email & password.</p>
+                </div>
+                <div class="login-form">
+                    <form action="/login" method="POST">
+                        <input type="hidden" name="_token" value="Sb0KHSUTArMG0neoU9xo1T9Ml67yazEsi6DZsNdw">                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                </div>
+                            <input id="email" type="email" placeholder="E-mail address" class="form-control " name="username" value="" required autocomplete="email" autofocus>
+                                                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                </div>
+                            <input id="password" type="password" placeholder="Password" class="form-control " name="password" value="" required>
+                                                        </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <input type="checkbox" id="rememberMe" name="remember" >
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                         
+                        <button type="submit" class="btn primary-btn btn-block">Login</button>
+                    </form>
+                     <div  th:if="${param.error}" class="msg msg-error">These credentials do not match our records.</div>
+   
+     <div  th:if="${param.blocked}" class="msg msg-error">The Login is Inactive/Blocked. Please Contact ADMIN.</div>
+        
+            <div th:if="${param.logout}" class="msg msg-success">You have been logged out. 
+            </div> 
+                    <div class="my-3">
+                        <p>Don't have an account? <a href="/signup">Register now</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 px-0">
+            <div class="login-poster">
+                
+                <h2 class="mb-3 slogon">Mark yourself as <br>Actively Job seeker</h2>
+                <p class="text-white lead">We have enabled this feature targeting superheros
+                    who lost their jobs during this crisis.</p>
+            </div>
+        </div>
+    </div>
+</div>
+  
+     <th:block   th:replace="base :: footer"> 
+   </th:block>
+   <style>
+.login-poster {
+   background-image: url('/assets/images/login-bg.jpg');
+    background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url('/assets/images/login-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+</style>
+</body>
+</html>
+ 

@@ -1,0 +1,186 @@
+<!doctype html>
+<html  lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+ 
+ <th:block th:replace="base :: header">
+</th:block>
+   <div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 px-0">
+            
+            <div class="login-poster">
+                
+                <h2 class="my-3 slogon">
+                    Register for a better opportunity
+                </h2>
+            
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Its free and always be</p>
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i>  Your Confidentiality is Assured</p>            
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> We Provide Career Opportunities</p> 
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Most Trusted Job Portal in Nepal</p>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 px-0">
+            <div class="login-container">
+                <div class="login-header mb-3">
+                    <h3><img src="/assets/images/logo/joblister.png" width="50px;" alt=""> Create your free jobseeker account</h3>
+                    <p class="text-muted">Register with basic information, Complete your profile and start applying for the job for free!</p>
+                </div>
+                <div class="login-form">
+                    <form action="/registerdb" method="POST" id="signup">
+                       
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-badge"></i></span>
+                                </div>
+                            <input id="name" type="name" placeholder="Full name" class="form-control " name="name" value="" required autocomplete="name" autofocus>
+                                                        </div>
+                                                           
+                        </div>
+                        <div class="form-group">
+                            <label> I am</label> 
+                           <input class="ml-2" type="radio" name="type" value="EMPLOYER"> Employer
+                           <input class="ml-2" type="radio" name="type" value="JOBSEEKER"> Job sekeer
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                </div>
+                            <input id="email" type="email" placeholder="E-mail address"  onBlur="checkAvailability()"  class="form-control " name="email" value="" required autocomplete="email" autofocus>
+                                                        </div>
+                                                          <span id="user-availability-status" style="font-size:12px;width:100%;"></span> 
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+                                </div>
+                            <input id="mobile" type="text" placeholder="Mobile" class="form-control " name="mobile" value="" required autocomplete="email" autofocus>
+                                                        </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                </div>
+                            <input id="password" type="password" placeholder="Password" class="form-control " name="password" value="" required>
+                                                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                </div>
+                            <input id="password_confirmation" type="password" placeholder="Password(Repeat)" class="form-control " name="confirmpassword" value="" required>
+                                                        </div>
+                        </div>
+                        <div>
+                            <small class="text-muted d-block mb-3">By clicking on 'Create Jobseeker Account' below you are agreeing to the terms and privacy of Job Portal!</p>
+                        </div>
+                        <button type="submit" class="btn primary-btn btn-block">Register</button>
+                        
+                          <div class="msg msg-success" role="alert" style="display:none"></div>
+		        <div class="msg msg-error" role="alert" style="display:none"></div>
+                        
+                    </form>
+                    <div class="my-3">
+                        <p>Already have an account? <a href="/login">Login now</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+   <th:block   th:replace="base :: footer"> 
+   </th:block>
+      <style>
+.login-poster {
+    /* fallback */
+   background-image: url('/assets/images/login-background.png');
+    background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url('/assets/images/login-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+</style>
+  <script>
+  function checkAvailability() {
+		if($("#email").val().length<5) return;
+		
+		$("#user-availability-status").html("Checking Availability......"); 
+	jQuery.ajax({
+	url: "/checkAvailability",
+	data:'emailid='+$("#email").val(),
+	type: "POST",
+	success:function(data){
+	$("#user-availability-status").html(data.html); 
+	},
+	error:function (){}
+	});
+	}
+  (function ($) {  
+		
+	  $('input[name=name]').on('keypress',function(event){
+			 return validatealpha(event);		 
+		 });  
+
+
+$('input[name=mobile]').on('keypress',function(event){
+		 return validatemobile(event);		 
+	 });		
+	
+$("#signup").off( "submit");
+$("#signup").submit(function(e) {
+
+   e.preventDefault(); // avoid to execute the actual submit of the form.
+   $('#submit').prop('disabled',true);
+   var form = $(this);
+	  $(".msg").show().hide();
+   var url = form.attr('action'); 
+   var data=form.serialize(); 
+   $.ajax({
+          type: "POST",
+          url: $(this).attr("action"),  
+          data:data , // serializes the form's elements.
+		    dataType: "json",
+          success: function(data)
+          { 
+		      if(data.success)
+               {
+		    	    $(".msg.msg-success").html(data.html).show();
+		    	    $("#signup").trigger('reset');
+		    		$("#user-availability-status").html(""); 
+		    	    //const myTimeout = setTimeout(function() {document.location.href="/login";}, 2000);
+		    	  } // show response from the php script.
+			  else
+				  {
+				     $(".msg.msg-error").html(data.html).show();
+				     $('#submit').prop('disabled',false);
+				  }
+		       
+		  
+		      }
+        });
+		     });  
+})(jQuery); 
+  </script>
+   
+</body>
+</html>
+ 

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout employer">
+          
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: employer-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+ Create Job listings
+    </div>
+    <div class="account-bdy p-3" th:if="${pnotupdated==1}">
+    <div class="alert alert-danger"> Please Update Your company details in profile updation page then you can start creating jobs.
+ </div>
+ </div>
+    <div class="account-bdy p-3" th:if="${pnotupdated!=1}">
+             <div class="alert alert-primary">Your company details will be attached automatically.</div>
+      <p class="text-primary mb-4">Fill in all fields to create a job listing</p>
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-12">
+          <form class="ajaxfrm" data-reload=1 data-reset=1 action="/employer/addpostdb" id="postForm" method="POST">
+          <div class="form-group">
+              <label for="">Job title</label>
+              <input type="text" placeholder="Job title" class="form-control " name="jobtitle" value="" required autofocus >
+                          </div>
+<div class="form-group">
+              <label for="">Job Category</label>
+              <select name="catg" class="form-control">
+       <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id==category}"></option>
+         
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">Job level</label>
+                  <select name="joblevel" class="form-control" value="" required>
+                    <option value="Senior level">Senior level</option>
+                    <option value="Mid level">Mid level</option>
+                    <option value="Top level">Top level</option>
+                    <option value="Entry level">Entry level</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="">No of vacancy</label>
+                  <input type="number" class="form-control " name="vacancycount" value="" required >
+                                  </div>
+              </div>
+            </div>
+       
+
+            <div class="form-group">
+              <label for="">Employment Type</label>
+              <select name="employmenttype" class="form-control"  value="">
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Internship">Internship</option>
+                <option value="Trainneship">Trainneship</option>
+                <option value="Volunter">Volunter</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="">Job location</label>
+              <input type="text" placeholder="Job location" class="form-control " name="joblocation" value="" required >
+                          </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">Offered Salary (Monthly)</label>
+                  <input type="text" placeholder="20k - 50k" class="form-control " name="salary" value="" required >
+                                  </div>
+                <div class="col-md-6">
+                  <label for="">Deadline</label>
+                  <input type="date" class="form-control " name="deadline" value="" required >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">Education level</label>
+                  <select name="educationlevel" class="form-control" value="">
+                    <option value="Bachelors">Bachelors</option>
+                    <option value="High School">High School</option>
+                    <option value="Master">Master</option>
+                    <option value="SEE Mid School">SEE Mid School</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Experience</label>
+                  <select name="experience" class="form-control" value="">
+                    <option value="Internship">Less than 1 year</option>
+                    <option value="1 year">1 year</option>
+                    <option value="2 years">2 years</option>
+                    <option value="2 years">3 years</option>
+                    <option value="More than 5+ year">More than 5+ year</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Professional skills <span class="text-info">( If multiple separate with "," )</span></label>
+              <input type="text" placeholder="Skill1,Skill2 etc" class="form-control " name="skills" value="" required >
+            </div>
+
+            <div class="form-group">
+              <label for="">Job Description (Specifications)</label>
+              <textarea id="specifications" name="specifications" class="form-control" required></textarea> 
+            </div>
+
+            <button  type="submit" class="btn primary-btn">Create Job listing</button>
+          </form>
+           <div class="container">
+<div class="msg msg-error  d-none" role="alert"  > 
+</div> 
+ 
+ 
+<div class="msg msg-success d-none" role="alert"  >  
+</div>
+ </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+    </div>
+  </div>
+         </div>
+            </div>
+        </div> 
+        
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+   
+   
+</body>
+</html>

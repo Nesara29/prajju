@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout employer">
+             
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: employer-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+      Posted Jobs
+    </div>
+    <div class="account-bdy p-3">
+  <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="table-responsive pt-3">
+            <table class="table table-hover table-striped small dataTable">
+              <thead>
+                <tr> 
+                  <th>Job Position</th>
+                  <th>Job Level</th> 
+                  <th>No of vacancy</th>
+                  <th>Apply Before</th> 
+                  <th>Applied</th> 
+                  <th>Status</th> 
+                  <th>Action</th> 
+                </tr>
+              </thead>
+              <tbody> 
+                <tr th:each="job:${jobs}">
+                  <td> <a th:href="${'/employer/viewjob/'+job.id}" title='view' th:text="${job.position}"></a></td>
+                  <td th:text="${job.level}"></td> 
+                  <td th:text="${job.vacancy}"></td>
+                  <td th:text="${job.deadline}"></td>
+                  <td> <a th:href="${'/employer/viewapplied/'+job.id}" title='view applied' class="text-warning h6"  th:text="${job.applied}"></a></td>
+                  <td th:text="${job.status==1?'Active':'Inactive'}"></td>
+                  <td> 
+                    <th:block th:if="${job.status==1}">
+<a href='#' class='dialoganchor' th:data-href="${'/employer/changejobstatus/'+job.id+'/0'}" onclick="return confirm('Are you sure you want to Inactivate this?');" >  <button class="btn btn-danger"> Inactivate</button>
+</a>
+</th:block>
+  <th:block th:unless="${job.status==1}"> 
+
+                                            <a  class='dialoganchor' href='#' th:data-href="${'/employer/changejobstatus/'+job.id+'/1'}" onclick="return confirm('Are you sure you want to activate this?');"><button class="btn btn-primary"> Activate</button> 
+                                          </a>
+                                          
+                                          </th:block>
+                  </td>
+                   
+                </tr> 
+                <tr th:unless="${jobs}">
+                  <th colspan=5>There isn't any jobs.</th> 
+                </tr> 
+              </tbody>
+            </table>
+          </div>
+         
+        </div>
+      </div>
+   
+      
+          </div>
+  </div>
+         </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+</body>
+</html>

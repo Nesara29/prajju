@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout admin">
+             
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: admin-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+       Job Categories
+    </div>
+    <div class="account-bdy p-3">
+
+              <div role="tabpanel" class="tab-pane active" id="categories-tab">
+                        <div class="mb-3">
+                            <form class="ajaxfrm" data-reload=1 data-reset=1 action="/admin/employercats/add" method="POST"> 
+                                <label for="">Add a new Category</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control" placeholder="Company category name" name="name">
+                                    <button class="btn secondary-btn">Add</button>
+                                               </div> 
+                                         <div class="container">
+<div class="msg msg-error  d-none" role="alert"  > 
+</div> 
+ 
+ 
+<div class="msg msg-success d-none" role="alert"  >  
+</div>
+ </div>
+                     
+                            </form>
+                        </div>
+                      
+                        <div class="table-responsive">
+                            <table class="table table-striped dataTable">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Category name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr th:each="category : ${categories}">
+                                        <td th:text="${category.id}"></td>
+                                        <td>
+                                          <span th:text="${category.name}"></span>
+                                         <form  class="ajaxfrm" style="display:none;" th:id="${'editfrm'+category.id}" data-reload=1  th:action="${'/admin/employercats/edit'}" id="categoryDestroyForm">
+                                                <input type="hidden" name="id" th:value="${category.id}">
+                                                <div class="d-flex">
+                                    <input type="text" class="form-control" placeholder="Company category name" name="name" th:value="${category.name}">
+                                    <button class="btn secondary-btn">Update</button>
+                                               </div> 
+                                                <div class="container">
+<div class="msg msg-error  d-none" role="alert"  > 
+</div> 
+ 
+ 
+<div class="msg msg-success d-none" role="alert"  >  
+</div>
+ </div>
+                                            </form>
+                                        </td>
+                                        <td>
+                                         <a class="btn secondary-btn" th:data-id="${category.id}" onclick="toggleeditfrm(this)">Edit</a> 
+                                            <form  class="ajaxfrm d-inline" data-reload=1  th:action="${'/admin/employercats/delete'}" id="categoryDestroyForm">
+                                                <input type="hidden" name="id" th:value="${category.id}">
+                                                <button id="categoryDestroyBtn" class="btn danger-btn">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+             
+        </div>
+  </div>
+         </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout employer">
+          
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: employer-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+View Job  
+    </div>
+    <div class="account-bdy p-3">
+            
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-12">
+      <section class="show-page pt-4 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="job-listing border">  
+          <div class="job-info">
+            <div class="job-hdr p-3">
+              <p class="job-title" th:text="${job.jobtitle}"></p>
+              <div class="">
+                <p class="job-views">
+                  <span class="text-success">Views: <span th:text="${job.views}"></span> </span>  
+                </p>
+                 <p class="job-views">
+                  <span class="text-success">Applied: <span th:text="${applied}"></span> </span>  
+                </p>
+              </div>
+            </div>
+            <div class="job-bdy p-3 my-3">
+              <div class="job-level-description">
+                <p class="font-weight-bold">Basic job level description</p>
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td width="33%">Job Category</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${catg}"></a></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Job Level</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.joblevel}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">No of vacancy[s]</td>
+                      <td width="3%">:</td>
+                      <td width="64%">[ <strong th:text="${job.vacancycount}"></strong> ]</td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Employment type</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.employmenttype}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Offered Salary(Monthly)</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.salary}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Apply before(Deadline)</td>
+                      <td width="3%">:</td>
+                      <td width="64%" class="text-danger" th:text="${deadline}"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="job-level-description">
+                <p class="font-weight-bold">Job Specification</p>
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td width="33%">Education level</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.educationlevel}"></a></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Experience Required</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.experience}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Professional Skill Required</td>
+                      <td width="3%">:</td>
+                      <td width="64%"> 
+                        <span class="badge badge-primary" th:text="${job.skills}"></span> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="job-level-description">
+                 <p class="font-weight-bold">More Specifications</p>  
+                <p class="py-2" th:utext="${job.specifications}"></p>
+              </div>
+              <br>
+              <hr>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+    </div>
+  </div>
+         </div>
+            </div>
+        </div> 
+        
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+   
+   
+</body>
+</html>

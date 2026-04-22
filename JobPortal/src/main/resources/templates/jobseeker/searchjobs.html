@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout jobseeker">
+             
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: jobseeker-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+      Search Jobs
+    </div>
+    <div class="account-bdy p-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="table-responsive pt-3">
+          <form id="searchfrm" action="/getjobsearch" method="post">
+            <table class="table">
+              <thead>
+                <tr><th>Job Title</th><td><input type="text" placeholder="Job title" class="form-control" name="jobtitle" value=""></td></tr> 
+                <tr><th>Job Category</th><td> <select name="catg" class="form-control">
+                <option value=0>--*--</option>
+       <option th:each="c:${categories}" th:value="${c.id}" th:text="${c.name}" th:selected="${c.id==category}"></option>
+                       </select></td></tr> 
+          <tr><th>Employment Type</th><td> <select name="employmenttype" class="form-control"  value="">
+           <option value=0>--*--</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Internship">Internship</option>
+                <option value="Trainneship">Trainneship</option>
+                <option value="Volunter">Volunter</option>
+              </select></td></tr>
+               <tr><th>Experience</th><td> <select name="experience" class="form-control" value="">
+               <option value=0>--*--</option>
+                    <option value="Internship">Less than 1 year</option>
+                    <option value="1 year">1 year</option>
+                    <option value="2 years">2 years</option>
+                    <option value="2 years">3 years</option>
+                    <option value="More than 5+ year">More than 5+ year</option>
+                  </select></td></tr>
+                  <tr><th></th><td class="float-right"><button id="search"  class="btn primary-btn">Search</button></td></tr>
+              </thead>
+              </table>
+              </form>
+              </div>
+    </div>
+    </div>
+  <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="table-responsive pt-3" id="divres">
+            
+          </div>
+         
+        </div>
+      </div>
+   
+      
+          </div>
+  </div>
+         </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+   <script>
+   var temp='<table class="table table-hover table-striped small dataTable"> <thead> <tr> <th>Job Position</th> <th>Posted By</th> <th>Job Level</th> <th>No of vacancy</th><th>Apply Before</th>  <th>Action</th></tr> </thead> <tbody>{{body}}</tbody> </table>';
+    $(function(){
+    	 $("#searchfrm").off( "submit");
+    	 $("#searchfrm").submit(function(e) {
+    		  e.preventDefault(); // avoid to execute the actual submit of the form.
+              ajxfrm=this;
+   		   $(this).find('button').attr('disabled',true);
+   	   	    var form = $(this);
+   	   	    var url = form.attr('action'); 
+   	   	    $.ajax({
+   	   	           type: "POST",
+   	   	           url: url,
+   	   	           data: form.serialize(), // serializes the form's elements.
+   	   			    dataType: "json",
+   	   	           success: function(data)
+   	   	           {
+   	   			      var strhtml="";
+   	   			      for(var i=0;i<data.length;i++)
+   	   			    	  {
+   	   			    	     strhtml+="<tr><td><a href='/viewjob/"+data[i].id+"'>"+data[i].position+"</a></td><td>"+data[i].postedby+"</td><td>"+data[i].level+"</td><td>"+data[i].vacancy+"</td><td>"+data[i].deadline+"</td><td><a href='/viewjob/"+data[i].id+"'>View And Apply</a></td</tr>";
+   	   			    	  }
+   	   	        	  strhtml=temp.replace('{{body}}',strhtml);
+   	   	        	  $("#divres").html(strhtml);
+   	   	              $(ajxfrm).find('button').attr('disabled',false);
+   	   	        $(".dataTable").dataTable();
+   	   	           }
+   	   	         });
+					  });
+    });
+   
+   </script>
+</body>
+</html>

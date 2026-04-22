@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+<th:block th:replace="base :: header">
+</th:block>
+ <section class="show-page pt-4 mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8"> 
+        <div class="job-listing border">  
+         <div class="company-info">
+            <div class="company-banner">
+              <div class="banner-overlay"></div> 
+              <img th:src="${'/viewbannerimage/'+employerdet.id}" class="company-banner-img img-fluid" alt="">  
+              <div class="company-media">
+                <img th:src="${'/viewprofileimage/'+employer.id}" alt="" class="company-logo">
+                <div>
+                  <a th:href="${'/viewemployer/'+employer.id}" class="secondary-link">
+                    <p class="font-weight-bold" th:text="${employer.name}"></p>
+                    <p class="company-category" th:text="${employercatg}"></p>
+                  </a>
+                </div>
+              </div>
+              <div class="company-website">
+                <a th:href="${employerdet.url}" target="_blank"><i class="fas fa-globe"></i></a>
+              </div>
+            </div>
+
+            
+            <div class="p-3">
+              <p th:text="${employerdet.cdesc}"></p>
+            </div>
+          </div>
+          <div class="job-info">
+            <div class="job-hdr p-3">
+              <p class="job-title" th:text="${job.jobtitle}"></p>
+              <div class=""> 
+                 <p class="job-views">
+                  <span class="text-success">Applied: <span th:text="${applied}"></span> </span>  
+                </p>
+              </div>
+            </div>
+            <div class="job-bdy p-3 my-3">
+              <div class="job-level-description">
+                <p class="font-weight-bold">Basic job level description</p>
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td width="33%">Job Category</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${catg}"></a></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Job Level</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.joblevel}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">No of vacancy[s]</td>
+                      <td width="3%">:</td>
+                      <td width="64%">[ <strong th:text="${job.vacancycount}"></strong> ]</td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Employment type</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.employmenttype}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Offered Salary(Monthly)</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.salary}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Apply before(Deadline)</td>
+                      <td width="3%">:</td>
+                      <td width="64%" class="text-danger" th:text="${deadline}"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="job-level-description">
+                <p class="font-weight-bold">Job Specification</p>
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td width="33%">Education level</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.educationlevel}"></a></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Experience Required</td>
+                      <td width="3%">:</td>
+                      <td width="64%" th:text="${job.experience}"></td>
+                    </tr>
+                    <tr>
+                      <td width="33%">Professional Skill Required</td>
+                      <td width="3%">:</td>
+                      <td width="64%"> 
+                        <span class="badge badge-primary m-1" th:each="s:${skills}" th:text="${s}"></span> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="job-level-description">
+                 <p class="font-weight-bold">More Specifications</p>  
+                <p class="py-2" th:text="${job.specifications}"></p>
+              </div>
+              <br>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <div sec:authorize="isAuthenticated()">
+                <div class="container">
+<div class="msg msg-error  d-none" role="alert"  > 
+</div> 
+ 
+ 
+<div class="msg msg-success d-none" role="alert"  >  
+</div>
+ </div>
+                  <a  th:if="${applied==0}" th:data-href="${'/jobseeker/applyjob/'+job.id}" class="btn primary-btn dialoganchor">Apply now</a>
+                  <a  th:if="${applied==1}" href="#" class="btn primary-btn    disabled">Applied</a>
+                 
+                  <a th:if="${saved==0}" th:data-href="${'/jobseeker/savejob/'+job.id}" class="btn primary-outline-btn dialoganchor"><i class="fas fa-star"></i> Save job</a>
+                 
+                  <a th:if="${saved==1}" href="#" class="btn primary-outline-btn  disabled"><i class="fas fa-star"></i> Saved</a>
+              
+                
+                </div>
+               <div sec:authorize="!isAuthenticated()">
+                  <a  href="/login" class="btn primary-btn">Please Login to Apply now</a>
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+           <div class="col-sm-12 col-md-4">
+        <div class="card d-none d-md-block mb-3">
+          <div class="card-header">
+            Job Action
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100">
+              
+               <div sec:authorize="isAuthenticated()">
+                 <div class="container">
+<div class="msg msg-error  d-none" role="alert"  > 
+</div> 
+ 
+ 
+<div class="msg msg-success d-none" role="alert"  >  
+</div>
+ </div>
+                  <a th:if="${applied==0}" th:data-href="${'/jobseeker/applyjob/'+job.id}" class="btn primary-outline-btn float-left dialoganchor">Apply now</a>
+  <a th:if="${applied==1}" href="#" class="btn primary-outline-btn float-left  disabled">Applied</a>
+ 
+            
+                  <a  th:if="${saved==0}" th:data-href="${'/jobseeker/savejob/'+job.id}" class="btn primary-btn dialoganchor"><i class="fas fa-star"></i> Save job</a>
+                 
+                       <a  th:if="${saved==1}" href="#" class="btn primary-btn   disabled"><i class="fas fa-star"></i> Saved</a>
+               
+                </div>
+               <div sec:authorize="!isAuthenticated()">
+                  <a  href="/login" class="btn primary-btn">Please Login to Apply now</a>
+                  
+                </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="card ">
+          <div class="card-header">
+            Similar Jobs
+          </div>
+          <div class="card-body">
+            <div class="similar-jobs"> 
+                <div class="job-item border-bottom row" th:each="j:${similarjobs}">
+                  <div class="col-4">
+                    <img th:src="${'/viewprofileimage/'+j.employerid}" class="company-logo" alt="">
+                  </div>
+                  <div class="job-desc col-8">
+                    <a th:href="${'/viewjob/'+j.id}" class="job-category text-muted font-weight-bold">
+                      <p class="text-muted h6" th:text="${j.jobtitle}"></p>
+                      <p class="small" th:text="${j.employer}"></p>
+                      <p class="font-weight-normal small text-danger">Deadline: <span  th:text="${j.deadline}"></span></p>
+                    </a>
+                  </div>
+                </div> 
+                <div class="card" th:unless="${similarjobs}">
+                  <div class="card-header">
+                    <p>No similar jobs</p>
+                  </div>
+                </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+        
+  
+      
+    </div>
+  </div>
+</section>
+      
+       
+     
+        
+	   <th:block   th:replace="base :: footer">
+ 
+   </th:block>
+   
+   <style>
+  .company-banner {
+    min-height: 20vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .company-banner-img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .3));
+    width: 100%;
+    height: 200px;
+  }
+
+  .company-website {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+  }
+
+  .company-media {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0rem;
+    bottom: 0rem;
+    color: #333;
+    padding-right: 2rem;
+    background-color:rgba(255,255,255,.8);
+  }
+
+  .company-logo {
+    max-width: 100px;
+    height: auto;
+    margin-right: 1rem;
+    padding: 1rem;
+    background-color: white;
+  }
+
+  .company-category {
+    font-size: 1.3rem;
+  }
+
+  .company-link:hover {
+    color: #ddd;
+  }
+
+  .job-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .job-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #e1edf7, #EDF2F7)
+  }
+
+  .job-item{
+    margin-bottom: .5rem;
+    padding:.5rem 0;
+  }
+  .job-item:hover {
+    background-color:#eee;
+  } 
+
+</style>
+</body>
+</html>

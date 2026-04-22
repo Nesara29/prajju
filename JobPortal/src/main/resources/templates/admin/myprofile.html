@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="base :: head">
+     
+</head>
+<body>
+
+<th:block th:replace="base :: header">
+</th:block>
+ 
+ 
+   <div class="container my-4">
+        <div class="account-layout admin">
+            
+            <div class="account-bdy">
+                <div class="row"> 
+                <th:block  th:replace="base :: admin-sidenavbar"></th:block> 
+
+<div class="col-sm-12 col-md-9 pl-md-0 pl-sm-3 ">
+                          <div class="account-layout  border">
+    <div class="account-hdr bg-primary text-white border">
+     Dashboard
+    </div>
+    <div class="account-bdy p-3">
+ 
+  <div class="msg msg-success" role="alert"  th:if="${success}" th:text="${success}">  
+  </div>
+  <div class="msg msg-error" role="alert"  th:if="${error}" th:text="${error}">  
+</div>  
+                            <form name="signup" id="peditfrm" method="post" action="/admin/updateprofile"    enctype="multipart/form-data">
+
+
+ 
+
+ 
+
+ <div class="d-flex text-center justify-content-center">
+ <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0 col-md-6">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2 " id="profileimgsrc" th:src="${'/myprofileimage'}" alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 500kb</div>
+                    <!-- Profile picture upload button-->
+                     <span class="d-none">
+                    <input type="file" accept="image/*" id="profileimg" name="profileimg">
+                    </span>
+                    <button class="btn btn-primary" type="button" onclick="$('#profileimg').click()">Upload new image</button>
+                </div>
+                </div>
+            </div>
+<div class="form-group">
+<label>  Full Name</label>
+<input class="form-control" type="text" name="fullname" th:value="${fullname}" autocomplete="off" required />
+</div>
+ 
+
+<div class="form-group">
+<label>Mobile Number :</label>
+<input class="form-control" type="text" name="mobileno" maxlength="10" th:value="${mobileno}" autocomplete="off" required />
+</div>
+                                        
+<div class="form-group">
+<label>  Email</label>
+<input class="form-control" type="email" name="username" id="username" th:value="${username}"  autocomplete="off" required readonly />
+</div> 
+                              
+<button type="submit" name="update" class="btn btn-primary" id="submit">Update Now </button>
+
+                                    </form>
+                                    <div class="form-group row mt-3">
+<label class="col">User ID : 
+#<th:block th:text="${id}"></th:block> </label>
+<label class="col">Reg Date :  
+<th:block th:text="${regdate}"></th:block> </label>
+<th:block th:if="${updationtime}"> 
+<label class="col">Last Updation Time :  
+<th:block th:text="${updationtime}"></th:block></label>
+</div>
+                            </div>
+                        </div>
+                            </div>
+        </div> 
+        </div>
+        </div>
+        </div>
+        
+     <!-- CONTENT-WRAPPER SECTION END-->
+   <th:block   th:replace="base :: footer">
+ 
+   </th:block> 
+   <script>
+   $('input[name=fullname]').on('keypress',function(event){
+		 return validatealpha(event);		 
+	 });  
+
+
+$('input[name=mobileno]').on('keypress',function(event){
+	 return validatemobile(event);		 
+});	
+   $('#profileimg').change(function(){
+	   if (this.files && this.files[0]) {
+	        var reader = new FileReader();
+            if(this.files[0].size<=512000)
+            	{
+	        reader.onload = function (e) {
+	            $('#profileimgsrc').attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(this.files[0]);
+	    }
+            else
+            	{
+            	this.files=null;
+            	alert("File size should be below 500kb");
+	   }
+	   }
+	   
+   });
+   </script>
+</body>
+</html>
