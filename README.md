@@ -109,34 +109,7 @@ flowchart TD
 
 **Request flow:** every request passes through the **Spring Security filter chain**, which checks the session against the requested route. Controllers delegate to the service/repository layer, JPA/Hibernate talks to MySQL, and Thymeleaf renders the employer or job-seeker template.
 
-## 📸 Screenshots & Demo
 
-> 🖼️ Add your actual screenshots to `docs/screenshots/` and update the filenames below.
-
-<div align="center">
-<table>
-<tr>
-<td align="center" width="50%">
-<img src="./docs/screenshots/home.png" alt="Home page — PLACEHOLDER" width="100%"/>
-<br/><b>Public Home Page</b>
-</td>
-<td align="center" width="50%">
-<img src="./docs/screenshots/employer-dashboard.png" alt="Employer dashboard — PLACEHOLDER" width="100%"/>
-<br/><b>Employer Dashboard</b>
-</td>
-</tr>
-<tr>
-<td align="center" width="50%">
-<img src="./docs/screenshots/job-search.png" alt="Job search — PLACEHOLDER" width="100%"/>
-<br/><b>Job Search</b>
-</td>
-<td align="center" width="50%">
-<img src="./docs/screenshots/seeker-dashboard.png" alt="Seeker dashboard — PLACEHOLDER" width="100%"/>
-<br/><b>Job Seeker Dashboard</b>
-</td>
-</tr>
-</table>
-</div>
 
 ## 🚀 Installation & Setup
 
@@ -232,18 +205,7 @@ OnlineJobPortalSystem/
 4. 📤 Push your branch
 5. 🔁 Submit a Pull Request
 
-## 👨‍💻 Developer
 
-<div align="center">
-
-| | |
-|---|---|
-| 🧑‍💻 **Name** | `YOUR_NAME` |
-| 🎓 **Role** | `Full-Stack Developer` |
-| 📧 **Email** | `YOUR_EMAIL@example.com` |
-| 🐙 **GitHub** | https://github.com/YOUR_USERNAME |
-
-</div>
 
 ## 🔗 Project Links
 
