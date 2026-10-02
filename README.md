@@ -230,17 +230,6 @@ JobPortal/
 4. Push to your branch.
 5. Open a Pull Request.
 
-## 👨‍💻 Developer
-
-<div align="center">
-
-| | |
-|---|---|
-| 🧑‍💻 **Name** | `NESARA` |
-| 🐙 **GitHub** | https://github.com/Nesara29 |
-
-</div>
-
 ## 🔗 Project Links
 
 <div align="center">
