@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/UI-Thymeleaf%20%2B%20Bootstrap-blue?style=flat-square" alt="UI"/>
 </p>
 
-<h3>💼 A full-stack job portal with employer job postings, jobseeker applications, and live in-app chat</h3>
+<h3>💼 ONLINE JOB PORTAL SYSTEM </h3>
 
 </div>
 
